@@ -1,60 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ollama AI Chat</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        #chatbot {
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            min-height: 100px;
-            margin-top: 20px;
-        }
-        .loading {
-            color: #666;
-            font-style: italic;
-        }
-    </style>
-</head>
-<body>
-    <h1>Ollama AI Chat</h1>
-    <div id="chatbot" class="loading">Connecting to Ollama AI...</div>
-
-    <script>
-        // Display loading state
-        const chatbot = document.getElementById('chatbot');
-        
-        // Make the API call to Ollama
-        fetch('http://localhost:11434/api/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message: 'مرحبًا' })
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            chatbot.classList.remove('loading');
-            chatbot.textContent = data.response || 'No response received';
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            chatbot.classList.remove('loading');
-            chatbot.textContent = 'Error connecting to Ollama. Make sure the Ollama server is running on localhost:11434';
-        });
-    </script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Jihed Hagui - Full Stack Developer & Designer" />
+    <link rel="icon" href="/icon.jpg" />
+    <title>Jihed Hagui - Full Stack Developer & Designer</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
 </html>
