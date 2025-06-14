@@ -233,7 +233,7 @@ export default function LunaChatbot() {
               <div className="relative group">
                 {/* Holographic Bubble */}
                 <div className="relative backdrop-blur-xl bg-white/10 border border-white/20 
-                              rounded-2xl shadow-xl p-4 max-w-xs transform transition-all duration-300 
+                              rounded-2xl shadow-xl p-4 w-full sm:max-w-xs transform transition-all duration-300 
                               hover:shadow-2xl hover:-translate-y-1">
                   {/* Floating Avatar */}
                   <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full overflow-hidden border-2 border-white/30">
@@ -613,12 +613,12 @@ export default function LunaChatbot() {
                   exit={{ height: 0, opacity: 0 }}
                   className="px-4 py-3 bg-slate-800/50 border-t border-purple-500/20"
                 >
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 overflow-x-auto pb-1 -mx-2 px-2">
                     {(messages.length === 1 ? suggestedQuestions : quickReplies).slice(0, 4).map((reply, index) => (
                       <motion.button
                         key={index}
                         onClick={() => handleSendMessage(reply)}
-                        className="px-3 py-2 bg-gradient-to-r from-purple-600/30 to-pink-600/30 text-white text-xs rounded-full hover:from-purple-500/50 hover:to-pink-500/50 transition-all duration-300 border border-white/10 backdrop-blur-sm"
+                        className="px-3 py-2 bg-gradient-to-r from-purple-600/30 to-pink-600/30 text-white text-xs rounded-full hover:from-purple-500/50 hover:to-pink-500/50 transition-all duration-300 border border-white/10 backdrop-blur-sm whitespace-nowrap"
                         whileHover={{ 
                           scale: 1.05,
                           boxShadow: "0 0 10px rgba(168, 85, 247, 0.3)"
@@ -637,7 +637,38 @@ export default function LunaChatbot() {
             </AnimatePresence>
             
             {/* Input Area */}
-            <div className="bg-slate-800/80 border-t border-purple-500/20 p-4 backdrop-blur-sm">
+            <div className="bg-slate-800/80 border-t border-purple-500/20 p-3 sm:p-4 backdrop-blur-sm">
+              {/* Quick Replies */}
+              <AnimatePresence>
+                {showQuickReplies && messages.length > 0 && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="mb-3 overflow-hidden"
+                  >
+                    <div className="flex gap-2 overflow-x-auto pb-1 -mx-2 px-2 scrollbar-hide">
+                      {(messages.length === 1 ? suggestedQuestions : quickReplies).slice(0, 4).map((reply, index) => (
+                        <motion.button
+                          key={index}
+                          onClick={() => handleSendMessage(reply)}
+                          className="px-3 py-2 bg-gradient-to-r from-purple-600/30 to-pink-600/30 text-white text-xs rounded-full hover:from-purple-500/50 hover:to-pink-500/50 transition-all duration-300 border border-white/10 backdrop-blur-sm whitespace-nowrap flex-shrink-0"
+                          whileHover={{ 
+                            scale: 1.05,
+                            boxShadow: "0 0 10px rgba(168, 85, 247, 0.3)"
+                          }}
+                          whileTap={{ scale: 0.95 }}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                        >
+                          {reply}
+                        </motion.button>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
               <div className="flex items-end space-x-3">
                 <div className="flex-1 relative">
                   <motion.input
@@ -647,14 +678,14 @@ export default function LunaChatbot() {
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyDown={handleKeyDown}
                     placeholder="Ask Luna anything about Jihed..."
-                    className="w-full px-4 py-3 bg-slate-700/50 border border-purple-500/30 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white placeholder-gray-400 text-sm transition-all duration-300"
+                    className="w-full px-4 py-2 sm:py-3 bg-slate-700/50 border border-purple-500/30 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white placeholder-gray-400 text-sm transition-all duration-300 min-h-[40px] sm:min-h-[44px]"
                     whileFocus={{ scale: 1.02 }}
                   />
                 </div>
                 <motion.button
                   onClick={() => handleSendMessage(inputValue)}
                   disabled={!inputValue.trim()}
-                  className="w-12 h-12 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-2xl flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed shadow-lg border border-purple-400/30"
+                  className="w-12 h-12 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-2xl flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed shadow-lg border border-purple-400/30 flex-shrink-0"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
