@@ -5,14 +5,18 @@ const nextConfig = {
     domains: ['images.unsplash.com'],
     unoptimized: true, // Required for static export
   },
-  output: 'export', // Enable static exports
-  distDir: 'out', // Output directory for the static export
-  // Optional: Add a trailing slash for all paths
+  // Remove output: 'export' for Vercel deployment
+  // Vercel will handle the static export automatically
+  // output: 'export',
+  // distDir: '.next', // Use default .next directory for Vercel
   trailingSlash: true,
-  // Optional: Enable React DevTools in production
   reactDevOverlay: false,
-  // Optional: Change the build output directory
-  // distDir: 'build',
+  // Enable React's experimental features if needed
+  experimental: {
+    appDir: true,
+  },
+  // Add basePath if deploying to a subdirectory
+  // basePath: '/your-base-path',
 }
 
 module.exports = nextConfig
