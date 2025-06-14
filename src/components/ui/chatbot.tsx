@@ -62,7 +62,7 @@ const quickReplies = [
   "Contact info please "
 ]
 
-export default function LunaChatbot() {
+export function LunaChatbot() {
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
   const [inputValue, setInputValue] = useState("")

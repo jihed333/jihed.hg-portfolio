@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import LunaChatbot from '@/components/ui/chatbot' // Adjust the path based on your structure
+import { LunaChatbot } from '@/components/ui' // Using the new UI index path
 
 
 
