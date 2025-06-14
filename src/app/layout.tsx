@@ -1,8 +1,13 @@
 import type { Metadata } from 'next'
+import { Viewport } from 'next'
 import './globals.css'
 import { LunaChatbot } from '@/components/ui' // Using the new UI index path
 
-
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+}
 
 export const metadata: Metadata = {
   title: 'Jihed Hagui - Full Stack Developer & Designer',
@@ -39,12 +44,7 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
-  },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-  },
+  }
 }
 
 export default function RootLayout({

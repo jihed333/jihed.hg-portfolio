@@ -13,9 +13,9 @@ import Footer from '../components/sections/Footer'
 import ScrollProgress from '../components/animations/ScrollProgress'
 import LoadingScreen from '../components/ui/LoadingScreen'
 
-// Dynamically import OllamaChat with SSR disabled
+// Dynamically import LunaChatbot with SSR disabled
 const DynamicOllamaChat = dynamic(
-  () => import('../components/ui/chatbot'),
+  () => import('../components/ui/chatbot').then(mod => mod.LunaChatbot),
   { ssr: false }
 )
 
