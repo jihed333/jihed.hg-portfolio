@@ -1,7 +1,12 @@
 import type { Metadata } from 'next'
 import { Viewport } from 'next'
+import Head from 'next/head'
 import './globals.css'
 import { LunaChatbot } from '@/components/ui' // Using the new UI index path
+
+// Add this if you're using custom fonts
+const fontSans = 'var(--font-sans)'
+const fontMono = 'var(--font-mono)'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -53,8 +58,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className="antialiased">
+    <html lang="en" className={`${fontSans} ${fontMono} dark`}>
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+      <body className="min-h-screen bg-background font-sans antialiased">
         {children}
         <LunaChatbot />
       </body>
