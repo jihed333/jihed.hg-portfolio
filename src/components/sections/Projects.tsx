@@ -32,16 +32,27 @@ const Projects = () => {
           className="bg-gray-900/50 rounded-lg overflow-hidden border border-gray-800 hover:border-purple-500 transition-all duration-300"
         >
           <div className="h-64 bg-gray-800 relative overflow-hidden">
-            <video 
-              autoPlay 
-              loop 
-              muted 
-              playsInline
-              className="w-full h-full object-cover"
-            >
-              <source src="jcode.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <div className="relative w-full h-full">
+              <video 
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+                className="w-full h-full object-cover"
+                preload="auto"
+                disablePictureInPicture
+                disableRemotePlayback
+                onContextMenu={(e) => e.preventDefault()}
+                webkit-playsinline="true"
+                x5-playsinline="true"
+                x5-video-player-type="h5"
+                x5-video-player-fullscreen="true"
+                x5-video-orientation="portrait"
+              >
+                <source src="/jcode.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900/80 flex items-end p-4">
               <h3 className="text-xl font-bold text-white">J_Code</h3>
             </div>
@@ -84,16 +95,27 @@ const Projects = () => {
           className="bg-gray-900/50 rounded-lg overflow-hidden border border-gray-800 hover:border-purple-500 transition-all duration-300"
         >
           <div className="h-64 bg-gray-800 relative overflow-hidden">
-            <video 
-              autoPlay 
-              loop 
-              muted 
-              playsInline
-              className="w-full h-full object-cover"
-            >
-              <source src="gambling.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <div className="relative w-full h-full">
+              <video 
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+                className="w-full h-full object-cover"
+                preload="auto"
+                disablePictureInPicture
+                disableRemotePlayback
+                onContextMenu={(e) => e.preventDefault()}
+                webkit-playsinline="true"
+                x5-playsinline="true"
+                x5-video-player-type="h5"
+                x5-video-player-fullscreen="true"
+                x5-video-orientation="portrait"
+              >
+                <source src="/gambling.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900/80 flex items-end p-4">
               <h3 className="text-xl font-bold text-white">JENterprise</h3>
             </div>
