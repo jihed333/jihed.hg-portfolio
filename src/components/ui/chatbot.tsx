@@ -669,13 +669,6 @@ export default function LunaChatbot() {
                   </motion.svg>
                 </motion.button>
               </div>
-              <motion.p 
-                className="text-xs text-gray-500 text-center mt-3"
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                Luna • Powered by AI • Always here to enchant ✨
-              </motion.p>
             </div>
           </motion.div>
         )}
