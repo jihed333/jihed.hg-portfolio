@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
-import Image from 'next/image'
 import Navbar from '../components/layout/Navbar'
 import Hero from '../components/sections/Hero'
 import About from '../components/sections/About'
@@ -20,24 +19,11 @@ const DynamicOllamaChat = dynamic(
   { ssr: false }
 )
 
-function useMobileDetect() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    // Only run on client-side
-    const userAgent = typeof window.navigator === 'undefined' ? '' : navigator.userAgent;
-    const mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
-    setIsMobile(mobile);
-  }, []);
-
-  return isMobile;
-}
-
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
   const [sparkle, setSparkle] = useState(false);
-  const isMobile = useMobileDetect();
+
 
   useEffect(() => {
     // Simulate loading progress
@@ -68,46 +54,20 @@ export default function Home() {
   return (
     <main className="relative min-h-screen bg-black overflow-hidden">
       <div className="fixed inset-0 w-full h-full z-0">
-        {isMobile ? (
-          <div className="relative w-full h-full">
-            <Image
-              src="/background-poster.jpg"
-              alt="Background"
-              fill
-              className="object-cover opacity-30"
-              priority
-              quality={75}
-              sizes="100vw"
-            />
-          </div>
-        ) : (
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover opacity-30"
-            poster="/background-poster.jpg"
-            preload="auto"
-            disablePictureInPicture
-            disableRemotePlayback
-            onContextMenu={(e) => e.preventDefault()}
-          >
-            <source src="/background.mp4" type="video/mp4" />
-            <source src="/background.webm" type="video/webm" />
-            <div className="absolute inset-0">
-              <Image
-                src="/background-poster.jpg"
-                alt="Background"
-                fill
-                className="object-cover"
-                priority
-                quality={75}
-                sizes="100vw"
-              />
-            </div>
-          </video>
-        )}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-30"
+          preload="auto"
+          disablePictureInPicture
+          disableRemotePlayback
+          onContextMenu={(e) => e.preventDefault()}
+        >
+          <source src="/background.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
       <ScrollProgress />
       <div className="relative z-10">
