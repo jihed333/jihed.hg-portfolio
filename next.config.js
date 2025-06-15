@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+import fs from 'fs';
+import path from 'path';
+
 const nextConfig = {
   // Enable React's strict mode
   reactStrictMode: true,
@@ -19,9 +22,7 @@ const nextConfig = {
   swcMinify: true,
   
   // Copy files from public to out directory
-  async exportPathMap(defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
-    const fs = require('fs');
-    const path = require('path');
+  async exportPathMap(defaultPathMap, { dir, outDir }) {
     
     // Copy all files from public to out/_next/static/media
     const publicDir = path.join(dir, 'public');
