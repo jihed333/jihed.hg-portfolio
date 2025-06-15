@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, useAnimation } from 'framer-motion'
-import { Button } from '@/components/ui'
+import { Button } from '@/components/ui/button'
 import { ArrowDown, Github, Linkedin, Mail, Download, Rocket } from 'lucide-react'
 import FloatingElements from '@/components/animations/FloatingElements'
 
