@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
+import Image from 'next/image'
 import Navbar from '../components/layout/Navbar'
 import Hero from '../components/sections/Hero'
 import About from '../components/sections/About'
@@ -54,20 +55,42 @@ export default function Home() {
   return (
     <main className="relative min-h-screen bg-black overflow-hidden">
       <div className="fixed inset-0 w-full h-full z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover opacity-30"
-          preload="auto"
-          disablePictureInPicture
-          disableRemotePlayback
-          onContextMenu={(e) => e.preventDefault()}
-        >
-          <source src="/background.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        {/* Mobile Fallback Image - Hidden on desktop */}
+        <div className="md:hidden w-full h-full">
+          <div className="relative w-full h-full">
+            <Image
+              src="/background-fallback.jpg"
+              alt="Background"
+              fill
+              className="object-cover opacity-30"
+              priority
+              quality={75}
+              sizes="100vw"
+            />
+          </div>
+        </div>
+        
+        {/* Video - Hidden on mobile, shown on desktop */}
+        <div className="hidden md:block w-full h-full">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-30"
+            preload="auto"
+            disablePictureInPicture
+            disableRemotePlayback
+            onContextMenu={(e) => e.preventDefault()}
+            // @ts-expect-error - for iOS autoplay
+            webkit-playsinline="true"
+            // @ts-expect-error - for iOS autoplay
+            x5-playsinline="true"
+          >
+            <source src="/background.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
       </div>
       <ScrollProgress />
       <div className="relative z-10">
