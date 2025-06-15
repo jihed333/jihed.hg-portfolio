@@ -13,14 +13,6 @@ const Hero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isHovering, setIsHovering] = useState(false)
 
-  const titles = [
-    'Full Stack Developer',
-    'UI/UX Designer', 
-    'Creative Coder',
-    'Digital Artist',
-    'Problem Solver'
-  ]
-
   // Array of profile images (replace with actual image paths)
   const profileImages = [
     'jihedhero.jpg',
@@ -41,6 +33,14 @@ const Hero = () => {
   }, [controls])
 
   useEffect(() => {
+    const titles = [
+      'Full Stack Developer',
+      'UI/UX Designer', 
+      'Creative Coder',
+      'Digital Artist',
+      'Problem Solver'
+    ]
+
     const handleTyping = () => {
       const i = loopNum % titles.length
       const fullText = titles[i]
@@ -62,7 +62,7 @@ const Hero = () => {
 
     const timer = setTimeout(handleTyping, typingSpeed)
     return () => clearTimeout(timer)
-  }, [text, isDeleting, loopNum, typingSpeed, titles])
+  }, [text, isDeleting, loopNum, typingSpeed])
 
   // Handle image cycling while hovering
   useEffect(() => {

@@ -15,7 +15,7 @@ import LoadingScreen from '../components/ui/LoadingScreen'
 
 // Dynamically import LunaChatbot with SSR disabled
 const DynamicOllamaChat = dynamic(
-  () => import('../components/ui/chatbot').then(mod => mod.LunaChatbot),
+  () => import('../components/ui/chatbot'),
   { ssr: false }
 )
 
