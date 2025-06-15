@@ -6,7 +6,7 @@ const nextConfig = {
   // Image optimization configuration
   images: {
     domains: ['images.unsplash.com'],
-    unoptimized: false // Enable image optimization
+    unoptimized: true // Disable image optimization for static export
   },
   
   // Enable static export for Vercel
@@ -17,6 +17,32 @@ const nextConfig = {
   
   // Enable SWC minification for better performance
   swcMinify: true,
+  
+  // Copy files from public to out directory
+  async exportPathMap(defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
+    const fs = require('fs');
+    const path = require('path');
+    
+    // Copy all files from public to out/_next/static/media
+    const publicDir = path.join(dir, 'public');
+    const outMediaDir = path.join(outDir, '_next/static/media');
+    
+    // Ensure the target directory exists
+    if (!fs.existsSync(outMediaDir)) {
+      fs.mkdirSync(outMediaDir, { recursive: true });
+    }
+    
+    // Copy each file from public to out/_next/static/media
+    const files = fs.readdirSync(publicDir);
+    files.forEach(file => {
+      fs.copyFileSync(
+        path.join(publicDir, file),
+        path.join(outMediaDir, file)
+      );
+    });
+    
+    return defaultPathMap;
+  },
   
   // Asset prefix for static exports
   assetPrefix: './',
